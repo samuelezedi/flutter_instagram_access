@@ -57,8 +57,11 @@ class _HomePageState extends State<HomePage> {
                     print(authUrl);
                     Navigator.pop(context);
                     var code = await Navigator.push(context, MaterialPageRoute(builder: (context) => WebViewPage(url: authUrl,)));
-                    print('printing code');
-                    print(code);
+
+
+                    var accessToken = await Instagram.getUserAccessToken(code);
+                    print('printing access token');
+                    print(accessToken);
 
                   },
                   color: Colors.blue,
