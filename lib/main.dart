@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_instagram_feeds/instagram_resource.dart';
+import 'package:flutter_instagram_feeds/webview.dart';
 
 void main() {
 
@@ -13,7 +14,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Instagram View',
       theme: ThemeData(
 
         primarySwatch: Colors.blue,
@@ -54,6 +55,11 @@ class _HomePageState extends State<HomePage> {
                     loader(context);
                     var authUrl = await Instagram().autorizationUrl;
                     print(authUrl);
+                    Navigator.pop(context);
+                    var code = await Navigator.push(context, MaterialPageRoute(builder: (context) => WebViewPage(url: authUrl,)));
+                    print('printing code');
+                    print(code);
+
                   },
                   color: Colors.blue,
                   child: Text('Instagram', style: TextStyle(fontSize: 17,color: Colors.white),),
